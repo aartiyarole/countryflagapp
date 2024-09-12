@@ -1,0 +1,54 @@
+
+<div class="country">
+  <div class="button">
+    <button (click)="goBack()">Back</button>
+  </div>
+
+  <div class="country-layout" *ngIf="countryDetails">
+    <img [src]="countryDetails.flags.png" alt="Country Flag" />
+    <div class="country-detail">
+      <h2>{{ countryDetails.name }}</h2>
+      <div class="country-info">
+        <div class="country-section">
+          <p><strong>Native Name:</strong> {{ countryDetails.nativeName }}</p>
+          <p>
+            <strong>Population:</strong>
+            {{ countryDetails.population | number }}
+          </p>
+          <p><strong>Region:</strong> {{ countryDetails.region }}</p>
+          <p><strong>Subregion:</strong> {{ countryDetails.subregion }}</p>
+          <p><strong>Capital:</strong> {{ countryDetails.capital }}</p>
+        </div>
+        <div class="country-section">
+          <p>
+            <strong>Top Level Domain:</strong>
+            {{ countryDetails.topLevelDomain[0] }}
+          </p>
+          <p>
+            <strong>Currency:</strong> {{ countryDetails.currencies[0].name }}
+          </p>
+          <p><strong>Languages:</strong></p>
+          <ul>
+            <li *ngFor="let language of countryDetails.languages">
+              {{ language.name }}
+            </li>
+          </ul>
+        </div>
+        <div class="border-countries">
+          <p><strong>Border Countries:</strong></p>
+          <div *ngIf="countryBorder.length > 0" class="border-countries-buttons">
+            <div *ngFor="let borderCountry of countryBorder" class="button">
+              {{ borderCountry }}
+            </div>
+          </div>
+          
+          <p *ngIf="noBordersMessage">{{ noBordersMessage }}</p>
+
+          <div *ngIf="!countryDetails">
+            <p>Country details not found.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="country-filters">
+  <div class="search-filter">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input
+      type="text"
+      placeholder="Search by country name or region..."
+      [(ngModel)]="searchTerm"
+      (input)="filterCountries()"
+    />
+    <div class="error-message" *ngIf="searchTerm && !filteredCountries.length">
+      No countries found matching "{{ searchTerm }}". Please try again!
+    </div>
+  </div>
+
+  <div class="select-container">
+    <select
+      id="regionSelect"
+      [(ngModel)]="selectedRegion"
+      (change)="filterCountries()"
+      class="dropdown-options"
+    >
+      <option value="" class="option-placeholder">Filter by Region</option>
+      <option
+        *ngFor="let region of regions"
+        [value]="region"
+        class="option-item"
+      >
+        {{ region }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="main-class">
+  <div
+    *ngFor="let country of filteredCountries"
+    class="country-card"
+    (click)="viewCountryDetails(country)"
+  >
+    <div class="country-card-img">
+      <img [src]="country.flags.png" alt="Generated Image" />
+    </div>
+    <div class="country-card-info">
+      <h3>{{ country.name }}</h3>
+      <p><strong>Population:</strong> {{ country.population | number }}</p>
+      <p><strong>Region:</strong > {{ country.region }}</p>
+      <p><strong>Capital:</strong> {{ country.capital }}</p>
+    </div>
+  </div>
+</div>
