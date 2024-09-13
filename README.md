@@ -1,4 +1,4 @@
-Live Deployed Link: https://countryflagapp-ay.netlify.app/home
+Live Deployed Link: https://countryflagapp-ay.netlify.app/
 
 # AngularTask
 
